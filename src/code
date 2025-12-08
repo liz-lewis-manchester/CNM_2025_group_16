@@ -1,0 +1,26 @@
+import numpy as np
+
+# Build coefficient arrays A and B which are used in the finite-difference method
+# They are used to update the concentration during time stepping
+
+# Parameters used: 
+# U - flow velocity (m/s)
+# dx - spacial grid spacing
+# dt - time step size
+# Nx - number of spatial grid points
+
+def coefficeints(U, dx, dt, Nx):
+
+  alpha = U*dt/dx
+
+  # Allocate arrays for coefficients
+  A = np.zeros(Nx - 1) 
+  B = np.zeros(Nx - 1)
+  
+  # Fill in coefficient values
+  # These define how each point depends on its neighbour during the update step
+  for i in range(Nx -1):
+    A[i] = 1 + alpha # scaling applied to the new value at the current point
+    B[i] = alpha # scaling applied to the previous point
+
+  return A, B
