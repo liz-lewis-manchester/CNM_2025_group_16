@@ -1,6 +1,11 @@
 def main(length,spatial_res,temp_res,init_conc,vel,pos_0_conc): #base function that calls on .. and creates outputs
     return #vel and pos_0_conc can be a single value or list
 
+def read_data(length, spatial_resolution, filename):
+    #return concentration list
+
+def interpolation(length, temp_res, conc_list):
+
 def test_initial_conditions_file(length,spatial_res,filename,in_conc):
 #    file_data = get_data(filename,length,spatial_res) #call function from .. script to get initial concentrations list
 #    main(length,spatial_res,10,file_data,0.1,in_conc)
