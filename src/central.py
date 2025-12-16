@@ -1,7 +1,16 @@
+import pandas as pd
+import numpy as np
 def main(length,spatial_res,temp_res,init_conc,vel,pos_0_conc): #base function that calls on .. and creates outputs
     return #vel and pos_0_conc can be a single value or list
 
 def read_data(length, spatial_resolution, filename):
+    df = pd.read_data('initial_conditions.csv', encoding='latin1')#use encoding='latin1' because the symbol mu cannot be read
+    return df[['Concentration (µg/m_ )']].values.flatten()
+    #return concentration list
+#extract the data from each column into an array and use the flatten function to convert data into 1-dimensional
+def read_data(length, spatial_resolution, filename):
+    df = pd.read_csv(filename, encoding='latin1')#use encoding='latin1' because the symbol mu cannot be read
+    return df[['Concentration (µg/m_ )']].values.flatten()
     #return concentration list
 
 def interpolation(length, temp_res, conc_list):
