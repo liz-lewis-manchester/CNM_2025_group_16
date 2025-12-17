@@ -1,11 +1,12 @@
 import pandas as pd
 import numpy as np
-df = pd.read_csv('initial_condition.csv', encoding = 'latin1')    #"latin1" was used to avoid special symbol
+import matplotlib.pyplot as plt
+df = pd.read_csv('/initial_conditions.csv', encoding = 'latin1')    #"latin1" was used to avoid special symbol
 
-S = df["Distance(m)"].values
-C = df["Concentration(µg/m_)"].values
+S = df["Distance (m)"].values
+C = df["Concentration (µg/m_ )"].values
 
-x = np.arrange(0, 20, 0.2)   #create grid
+x = np.arange(0, 20, 0.2)   #create grid
 C0 = np.interp(x, S, C)
 
 print("x shape", x.shape)
