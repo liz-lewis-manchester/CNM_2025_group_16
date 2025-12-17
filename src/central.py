@@ -10,12 +10,11 @@ def read_data(length, spatial_resolution, filename):
     #return concentration list
 
 def interpolation(length, spatial_resolution, conc_list, distance_list):
-    distance_grid = np.arange(0, length + spatial_resolution, spatial_resolution)
+    distance_grid = np.arange(0, length + spatial_resolution, spatial_resolution) 
     conc_grid = np.interp(distance_grid, distance_list, conc_list)
     return conc_grid, distance_grid
-conc_raw, distance_raw = read_data(20, 0.2, 'initial_conditions.csv')
-#print(read_data(20, 0.2, 'initial_conditions.csv'))
-print(interpolation(20,0.2, conc_raw, distance_raw))
+conc_raw, distance_raw = read_data(20, 0.2, 'initial_conditions.csv') #example values for conc_list, distance_list parameters
+#print(interpolation(20,0.2, conc_raw, distance_raw))
 
 def test_initial_conditions_file(length,spatial_res,filename,in_conc):
 #    file_data = get_data(filename,length,spatial_res) #call function from .. script to get initial concentrations list
