@@ -39,7 +39,7 @@ def coefficients(U, dx, dt, Nx):
 # Nt - number of time steps
 # U - flow velocity (m/s) 
 
-def advection_model(initial_theta, L, T, Nx, Nt, U):
+def advection_model(initial_theta, L, T, Nx, Nt, U, theta_upstream=None):
     """
     Solve the 1D linear advection equation using a finite-difference scheme.
     """
@@ -64,8 +64,13 @@ def advection_model(initial_theta, L, T, Nx, Nt, U):
   # Loop over time steps
   for j in range(Nt):
 
-    # Apply boundary conditions at the upstream end (value is fixed here)
-    theta_new[0] = theta_old[0]
+    # Apply upstream boundary condition:
+    # use a user-defined time-dependent inflow if provided,
+    # otherwise keep the upstream concentration constant
+    if theta_upstream is not None:
+        theta_new[0] = theta_upstream[j]
+    else:
+        theta_new[0] = theta_old[0]
 
     # Build the right-hand-side values using the previous solution
     for i in range(Nx - 2):
