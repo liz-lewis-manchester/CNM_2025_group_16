@@ -195,7 +195,7 @@ if __name__ == "__main__":
     # plot initial condition (one profile)
     plot_profile(x, C0, title="Initial pollutant concentration", save_path="results/figures/initial_C0.png", show=True)
 
-    # --- run model (replace this with your own PDE solver if you have one) ---
+    # --- run model
     C_all = run_simple_advection(C0, U, x, t)
 
     # profile graph for each time step
