@@ -13,7 +13,7 @@ def coefficients(U, dx, dt, Nx):
     Construct coefficient arrays used in the time-stepping update.
     """
 
-  alpha = U * dt / dx
+  alpha[i] = U[i] * dx / dt
 
   # Allocate arrays for coefficients
   A = np.zeros(Nx - 1) 
@@ -22,8 +22,8 @@ def coefficients(U, dx, dt, Nx):
   # Fill in coefficient values
   # These define how each point depends on its neighbour during the update step
   for i in range(Nx -1):
-    A[i] = 1 + alpha
-    B[i] = alpha
+    A[i] = 1 + alpha[i]
+    B[i] = alpha[i]
 
   return A, B
 
