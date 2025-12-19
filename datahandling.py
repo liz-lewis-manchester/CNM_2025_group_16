@@ -1,17 +1,24 @@
 import pandas as pd
 import numpy as np
-#extract the data from each column into an array and use the flatten function to convert data into 1-dimensional
+# extract the data from each column into an array and use the flatten function to convert data into 1-dimensional
 def read_data(length, spatial_resolution, filename):
-    df = pd.read_csv(filename, encoding='latin1')#use encoding='latin1' because the symbol mu cannot be read
-    conc_list = df[['Concentration (µg/m_ )']].values.flatten() # Corrected potential trailing space
-    distance_list = df[['Distance (m)']].values.flatten()     # Corrected extra space
-    return conc_list, distance_list
-#print(read_data(20, 0.2, 'initial_conditions.csv'))
-    #return concentration list
-
-def interpolation(length, spatial_resolution, conc_list, distance_list):
+    df = pd.read_csv(filename, encoding='latin1') # use encoding='latin1' because the symbol mu cannot be read
+    conc_list = df[['Concentration (µg/m_ )']].values.flatten() 
+    distance_list = df[['Distance (m)']].values.flatten() 
+    n_data = len(conc_list) # number of data points in the file
     distance_grid = np.arange(0, length + spatial_resolution, spatial_resolution)
-    conc_grid = np.interp(distance_grid, distance_list, conc_list)
-    return conc_grid, distance_grid
-#conc_raw, distance_raw = read_data(20, 0.2, 'initial_conditions.csv') #example values for conc_list, distance_list parameters
-#print(interpolation(20,0.2, conc_raw, distance_raw))
+    n_grid = len(distance_grid)
+    # decide if interpolation is necessary
+    if n_data == n_grid:
+        conc = conc_list
+        distance = distance_list
+    else:
+      conc = np.interp(distance_grid, distance_list, conc_list)
+      distance = distance_grid
+    return conc, distance, n_data
+
+# test with example values
+# conc, distance, n_data = read_data(20, 0.2, 'initial_conditions.csv')
+#print(conc)
+#print(distance)
+#print(n_data)
