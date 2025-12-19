@@ -8,7 +8,7 @@ import numpy as np
 # dt - time step size
 # Nx - number of spatial grid points
 
-def coefficeints(U, dx, dt, Nx):
+def coefficients(U, dx, dt, Nx):
 
   alpha = U*dt/dx
 
@@ -47,7 +47,7 @@ def advection_model(initial_theta, L, T, Nx, Nt, U):
   theta_new = np.zeros(Nx)
 
   # Coefficient arrays for the update formula
-  A, B = coefficeints(U, dx, dt, Nx)
+  A, B = coefficients(U, dx, dt, Nx)
 
   # Right-hand-side vector used when updating the solution
   F = np.zeros(Nx-2)
