@@ -4,13 +4,13 @@ import numpy as np
 
 # Parameters used: 
 # U - flow velocity (m/s)
-# dx - spacial grid spacing
+# dx - spatial grid spacing
 # dt - time step size
 # Nx - number of spatial grid points
 
 def coefficients(U, dx, dt, Nx):
 
-  alpha = U*dt/dx
+  alpha = U * dt / dx
 
   # Allocate arrays for coefficients
   A = np.zeros(Nx - 1) 
