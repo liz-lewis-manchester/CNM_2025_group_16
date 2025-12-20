@@ -13,7 +13,7 @@ def plot_graphs(data_grid, length, time, spatial_res, temp_res):   ## Define a f
         plt.xlabel('Distance along river(m)')
         plt.ylabel('Concentration µg/m^3')
         plt.draw()
-        figures[i].append(plt.savefig('t'+str(i)+'.png'))
+        figures[i].append(plt.savefig('test'+str(test_num)+'fig'+str(i)+'.png',))
         plt.pause(1)
         plt.cla()
     return figures
